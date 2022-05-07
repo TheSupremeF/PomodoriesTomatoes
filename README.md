@@ -1,6 +1,6 @@
-# pomodororeyistasakli
+# Pomodori es Tomatoes!
 
-A new Flutter project.
+Love of software has started with this almost shitty project :)
 
 ## Getting Started
 
