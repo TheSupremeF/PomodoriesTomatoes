@@ -1,6 +1,6 @@
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:pomodororeyistasakli/screens/home.dart';
-import 'package:pomodororeyistasakli/utils/constants.dart';
+import '../screens/home.dart';
+import '../utils/constants.dart';
 
 class Circular {
   static CircularPercentIndicator indiKeytir = CircularPercentIndicator(

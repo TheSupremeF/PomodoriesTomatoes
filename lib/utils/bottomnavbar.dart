@@ -104,58 +104,39 @@ class _BottomNavBarSettingsButtonState
 }
 
 class BottomNavBar {
-  static List<Color> colorListFun() {
-    const List<Color> _colorList = [
-      Color.fromARGB(255, 255, 153, 0),
-      Color.fromARGB(160, 255, 153, 0),
-      Color.fromARGB(37, 255, 255, 255)
-    ];
-    return _colorList;
-  }
+  static final List<Color> _colorList = [
+    const Color.fromARGB(255, 255, 153, 0),
+    const Color.fromARGB(160, 255, 153, 0),
+    const Color.fromARGB(37, 255, 255, 255)
+  ];
 
   static Container nav = Container(
-    decoration: BoxDecoration(
-        gradient: LinearGradient(
-            begin: Alignment.bottomCenter,
-            end: Alignment.topCenter,
-            colors: colorListFun())),
-    child: Container(
-      color: const Color.fromARGB(123, 255, 255, 255),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
+              colors: _colorList)),
+      child: Container(
+        color: const Color.fromARGB(123, 255, 255, 255),
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
           Column(
             mainAxisSize: MainAxisSize.min,
             children: const [BottomNavBarSettingsButton(), Text('Settings')],
           ),
-          TextButton(
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
-                      const Color.fromARGB(0, 255, 255, 255)),
-                  overlayColor: MaterialStateProperty.all(
-                      const Color.fromARGB(100, 110, 110, 110))),
-              onPressed: () {},
-              child: Row(
-                children: [
-                  Column(
-                    children: const [
-                      Icon(
-                        Icons.restore,
-                        size: 30,
-                        color: Colors.white,
-                      ),
-                      Text(
-                        'Reset',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500, color: Colors.white),
-                      )
-                    ],
-                    mainAxisSize: MainAxisSize.min,
-                  ),
-                ],
-              )),
-        ],
-      ),
-    ),
-  );
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              IconButton(
+                  highlightColor: const Color.fromARGB(0, 255, 255, 255),
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.restore,
+                    size: 30,
+                    color: Colors.white,
+                  )),
+              const Text('Reset'),
+            ],
+          ),
+        ]),
+      ));
 }

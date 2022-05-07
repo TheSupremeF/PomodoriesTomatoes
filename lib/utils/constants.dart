@@ -1,4 +1,4 @@
-import 'package:pomodororeyistasakli/model/status.dart';
+import '../model/status.dart';
 import 'package:flutter/material.dart';
 
 const pomodoroTotalTime = 25 * 60;

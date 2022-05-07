@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pomodororeyistasakli/themes/themes.dart';
+import '../themes/themes.dart';
 
 class ProgIco extends StatelessWidget {
   final int total;

@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:pomodororeyistasakli/model/status.dart';
-import 'package:pomodororeyistasakli/utils/bottomnavbar.dart';
-import 'package:pomodororeyistasakli/utils/constants.dart';
-import 'package:pomodororeyistasakli/widgets/progico.dart';
+import '../model/status.dart';
+import '../utils/bottomnavbar.dart';
+import '../utils/constants.dart';
+import '../widgets/progico.dart';
 
 import '../widgets/cirperind.dart';
 

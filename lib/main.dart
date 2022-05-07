@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pomodororeyistasakli/screens/home.dart';
-import 'package:pomodororeyistasakli/themes/themes.dart';
+import '../screens/home.dart';
+import '../themes/themes.dart';
 import '../utils/bottomnavbar.dart';
 
 void main() {
