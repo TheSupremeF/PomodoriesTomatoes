@@ -1,4 +1,4 @@
-# pomodororeyistasakli
+# Pomodori es Tomatoes!
 
 Love of software has started with this almost shitty project :)
 
