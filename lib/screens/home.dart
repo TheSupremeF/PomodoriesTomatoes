@@ -22,6 +22,14 @@ const _btnTextStartLongBreak = 'Take Long Break';
 const _btnTextStartNewSet = 'Start New Set';
 const _btnTextPause = 'Pause';
 const _btnTextReset = 'Reset';
+
+const _btnIconStart = 'Start Pomodoro';
+const _btnIconResumePomodoro = 'Resume Pomodoro';
+const _btnIconStartShortBreak = 'Take Short Break';
+const _btnIconStartLongBreak = 'Take Long Break';
+const _btnIconStartNewSet = 'Start New Set';
+const _btnIconPause = 'Pause';
+const _btnIconReset = 'Reset';
 int remainingTime = pomodoroTotalTime;
 
 Text secondtoFormatted = Text(
