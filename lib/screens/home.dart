@@ -23,13 +23,13 @@ const _btnTextStartNewSet = 'Start New Set';
 const _btnTextPause = 'Pause';
 const _btnTextReset = 'Reset';
 
-const _btnIconStart = 'Start Pomodoro';
-const _btnIconResumePomodoro = 'Resume Pomodoro';
-const _btnIconStartShortBreak = 'Take Short Break';
-const _btnIconStartLongBreak = 'Take Long Break';
-const _btnIconStartNewSet = 'Start New Set';
-const _btnIconPause = 'Pause';
-const _btnIconReset = 'Reset';
+const _btnIconStart = Icon(Icons.play_arrow);
+const _btnIconResumePomodoro = Icon(Icons.play_arrow);
+const _btnIconStartShortBreak = Icon(Icons.pause);
+const _btnIconStartLongBreak = Icon(Icons.pause_circle_filled);
+const _btnIconStartNewSet = Icon(Icons.play_arrow);
+const _btnIconPause = Icon(Icons.pause);
+const _btnIconReset = Icon(Icons.rotate_right);
 int remainingTime = pomodoroTotalTime;
 
 Text secondtoFormatted = Text(
@@ -38,6 +38,7 @@ Text secondtoFormatted = Text(
 );
 
 String mainBtnText = _btnTextStart;
+Icon mainBtnIcon = _btnIconStart;
 String title = '39 Kilo';
 PomoStatus pomoStatus = PomoStatus.paused;
 late Timer _timer;
@@ -86,15 +87,92 @@ class _PomoHomeState extends State<PomoHome> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-          tooltip: "Play kenks",
-          onPressed: () {},
-          child: const Icon(Icons.play_arrow),
+          backgroundColor: Colors.deepOrange,
+          tooltip: mainBtnText,
+          onPressed: () {
+            _mainButtonPressed();
+          },
+          child: const Icon(
+            Icons.play_arrow,
+            color: Colors.white,
+          ),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,
       bottomNavigationBar: BottomNavBar.nav,
     );
+  }
+
+  _mainButtonPressed() {
+    switch (pomoStatus) {
+      case PomoStatus.running:
+        // TODO: Handle this case.
+        break;
+      case PomoStatus.paused:
+        _startPomodoroCountdown();
+        break;
+      case PomoStatus.finished:
+        // TODO: Handle this case.
+        break;
+      case PomoStatus.longbreakRunning:
+        // TODO: Handle this case.
+        break;
+      case PomoStatus.longbreakPaused:
+        // TODO: Handle this case.
+        break;
+      case PomoStatus.shortbreakRunning:
+        // TODO: Handle this case.
+        break;
+      case PomoStatus.shortbreakPaused:
+        // TODO: Handle this case.
+        break;
+    }
+  }
+
+  _startPomodoroCountdown() {
+    pomoStatus = PomoStatus.running;
+    _cancelTimer();
+
+    _timer = Timer.periodic(
+        const Duration(seconds: 1),
+        (timer) => {
+              if (remainingTime > 0)
+                {
+                  setState(() {
+                    remainingTime--;
+                    mainBtnText = _btnTextPause;
+                    mainBtnIcon = _btnIconStart;
+                  })
+                }
+              else
+                {
+                  pomoNum++,
+                  _cancelTimer(),
+                  if (pomoNum % pomodorosPerSet == 0)
+                    {
+                      pomoStatus = PomoStatus.longbreakPaused,
+                      setState(() {
+                        remainingTime = longBreakTime;
+                        mainBtnText = _btnTextStartLongBreak;
+                        mainBtnIcon = _btnIconStartLongBreak;
+                      }),
+                    }
+                  else
+                    {
+                      pomoStatus = PomoStatus.shortbreakPaused,
+                      setState(() {
+                        remainingTime = shortBreakTime;
+                        mainBtnText = _btnTextStartShortBreak;
+                        mainBtnIcon = _btnIconStartShortBreak;
+                      }),
+                    }
+                }
+            });
+  }
+
+  _cancelTimer() {
+    _timer.cancel();
   }
 }
 

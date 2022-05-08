@@ -111,19 +111,28 @@ class BottomNavBar {
   ];
 
   static Container nav = Container(
-      decoration: BoxDecoration(
-          gradient: LinearGradient(
+      decoration: const BoxDecoration(color: Colors.orange
+/*           gradient: LinearGradient(
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,
-              colors: _colorList)),
-      child: Container(
-        color: const Color.fromARGB(123, 255, 255, 255),
-        child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: const [BottomNavBarSettingsButton(), Text('Settings')],
+              colors: _colorList) */
           ),
-          Column(
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+        Container(
+          width: 100,
+          color: Colors.deepOrange,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: const [
+              BottomNavBarSettingsButton(),
+              Text('Settings', style: TextStyle(color: Colors.white))
+            ],
+          ),
+        ),
+        Container(
+          width: 100,
+          color: Colors.deepOrange,
+          child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               IconButton(
@@ -134,9 +143,9 @@ class BottomNavBar {
                     size: 30,
                     color: Colors.white,
                   )),
-              const Text('Reset'),
+              const Text('Reset', style: TextStyle(color: Colors.white)),
             ],
           ),
-        ]),
-      ));
+        ),
+      ]));
 }
