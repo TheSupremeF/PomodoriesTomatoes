@@ -24,13 +24,14 @@ const _btnTextStartNewSet = 'Start New Set';
 const _btnTextPause = 'Pause';
 const _btnTextReset = 'Reset';
 
-const _btnIconStart = Icon(Icons.play_arrow);
-const _btnIconResumePomodoro = Icon(Icons.play_arrow);
-const _btnIconStartShortBreak = Icon(Icons.pause);
-const _btnIconStartLongBreak = Icon(Icons.pause_circle_filled);
-const _btnIconStartNewSet = Icon(Icons.play_arrow);
-const _btnIconPause = Icon(Icons.pause);
-const _btnIconReset = Icon(Icons.rotate_right);
+const _btnIconStart = Icon(Icons.play_arrow, color: Colors.white);
+const _btnIconResumePomodoro = Icon(Icons.play_arrow, color: Colors.white);
+const _btnIconStartShortBreak = Icon(Icons.pause, color: Colors.white);
+const _btnIconStartLongBreak =
+    Icon(Icons.pause_circle_filled, color: Colors.white);
+const _btnIconStartNewSet = Icon(Icons.play_arrow, color: Colors.white);
+const _btnIconPause = Icon(Icons.pause, color: Colors.white);
+const _btnIconReset = Icon(Icons.rotate_right, color: Colors.white);
 
 PomoStatus pomoStatus = PomoStatus.paused;
 
@@ -71,8 +72,8 @@ class _PomoHomeState extends State<PomoHome> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CircularPercentIndicator(
-                      animation: true,
-                      lineWidth: 25,
+                      animation: false,
+                      lineWidth: 20,
                       percent: _getPomoPercentage(),
                       progressColor: statusColor[pomoStatus],
                       radius: 120,
@@ -93,20 +94,17 @@ class _PomoHomeState extends State<PomoHome> {
           ),
         ),
       ),
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniCenterDocked,
       floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.deepOrange,
           tooltip: mainBtnText,
           onPressed: () {
             _mainButtonPressed();
           },
-          child: const Icon(
-            Icons.play_arrow,
-            color: Colors.white,
-          ),
+          child: mainBtnIcon,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.miniCenterDocked,
       bottomNavigationBar: BottomNavBar.nav,
     );
   }
@@ -195,6 +193,7 @@ class _PomoHomeState extends State<PomoHome> {
                   setState(() {
                     remainingTime--;
                     mainBtnText = _btnTextPause;
+                    mainBtnIcon = _btnIconPause;
                   })
                 }
               else
@@ -207,6 +206,7 @@ class _PomoHomeState extends State<PomoHome> {
                       setState(() {
                         remainingTime = longBreakTime;
                         mainBtnText = _btnTextStartLongBreak;
+                        mainBtnIcon = _btnIconStartLongBreak;
                       }),
                     }
                   else
@@ -215,6 +215,7 @@ class _PomoHomeState extends State<PomoHome> {
                       setState(() {
                         remainingTime = shortBreakTime;
                         mainBtnText = _btnTextStartShortBreak;
+                        mainBtnIcon = _btnIconStartShortBreak;
                       }),
                     }
                 }
