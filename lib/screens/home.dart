@@ -1,12 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 import '../model/status.dart';
 import '../utils/bottomnavbar.dart';
 import '../utils/constants.dart';
 import '../widgets/progico.dart';
 
-import '../widgets/cirperind.dart';
+// import '../widgets/cirperind.dart';
 
 class PomoHome extends StatefulWidget {
   const PomoHome({Key? key}) : super(key: key);
@@ -30,22 +31,17 @@ const _btnIconStartLongBreak = Icon(Icons.pause_circle_filled);
 const _btnIconStartNewSet = Icon(Icons.play_arrow);
 const _btnIconPause = Icon(Icons.pause);
 const _btnIconReset = Icon(Icons.rotate_right);
-int remainingTime = pomodoroTotalTime;
 
-Text secondtoFormatted = Text(
-  _secondToFormattedString(remainingTime),
-  style: const TextStyle(fontSize: 35),
-);
-
-String mainBtnText = _btnTextStart;
-Icon mainBtnIcon = _btnIconStart;
-String title = '39 Kilo';
 PomoStatus pomoStatus = PomoStatus.paused;
-late Timer _timer;
-int pomoNum = 0;
-int setNum = 0;
 
 class _PomoHomeState extends State<PomoHome> {
+  int remainingTime = pomodoroTotalTime;
+  String mainBtnText = _btnTextStart;
+  Icon mainBtnIcon = _btnIconStart;
+  String title = 'Pomodoro app';
+  Timer? _timer;
+  int pomoNum = 0;
+  int setNum = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,7 +70,18 @@ class _PomoHomeState extends State<PomoHome> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Circular.indiKeytir,
+                    CircularPercentIndicator(
+                      animation: true,
+                      lineWidth: 25,
+                      percent: _getPomoPercentage(),
+                      progressColor: statusColor[pomoStatus],
+                      radius: 120,
+                      circularStrokeCap: CircularStrokeCap.round,
+                      center: Text(
+                        _secondToFormattedString(remainingTime),
+                        style: const TextStyle(fontSize: 35),
+                      ),
+                    ),
                     const SizedBox(height: 10),
                     ProgIco(
                         total: pomodorosPerSet,
@@ -104,13 +111,31 @@ class _PomoHomeState extends State<PomoHome> {
     );
   }
 
+  _cancelTimer() {
+    if (_timer != null) {
+      _timer!.cancel();
+    }
+  }
+
+  String _secondToFormattedString(int seconds) {
+    int roundedMinutes = seconds ~/ 60;
+    int remainingSeconds = seconds - (roundedMinutes * 60);
+    String remainingSecondsFormatted;
+    if (remainingSeconds < 10) {
+      remainingSecondsFormatted = "0$remainingSeconds";
+    } else {
+      remainingSecondsFormatted = remainingSeconds.toString();
+    }
+    return '$roundedMinutes:$remainingSecondsFormatted';
+  }
+
   _mainButtonPressed() {
     switch (pomoStatus) {
-      case PomoStatus.running:
-        // TODO: Handle this case.
-        break;
       case PomoStatus.paused:
         _startPomodoroCountdown();
+        break;
+      case PomoStatus.running:
+        // TODO: Handle this case.
         break;
       case PomoStatus.finished:
         // TODO: Handle this case.
@@ -130,10 +155,38 @@ class _PomoHomeState extends State<PomoHome> {
     }
   }
 
+  _getPomoPercentage() {
+    int totalTime;
+    switch (pomoStatus) {
+      case PomoStatus.running:
+        totalTime = pomodoroTotalTime;
+        break;
+      case PomoStatus.paused:
+        totalTime = pomodoroTotalTime;
+        break;
+      case PomoStatus.finished:
+        totalTime = pomodoroTotalTime;
+        break;
+      case PomoStatus.longbreakRunning:
+        totalTime = pomodoroTotalTime;
+        break;
+      case PomoStatus.longbreakPaused:
+        totalTime = pomodoroTotalTime;
+        break;
+      case PomoStatus.shortbreakRunning:
+        totalTime = pomodoroTotalTime;
+        break;
+      case PomoStatus.shortbreakPaused:
+        totalTime = pomodoroTotalTime;
+        break;
+    }
+    double percentage = (totalTime - remainingTime) / totalTime;
+    return percentage;
+  }
+
   _startPomodoroCountdown() {
     pomoStatus = PomoStatus.running;
     _cancelTimer();
-
     _timer = Timer.periodic(
         const Duration(seconds: 1),
         (timer) => {
@@ -142,7 +195,6 @@ class _PomoHomeState extends State<PomoHome> {
                   setState(() {
                     remainingTime--;
                     mainBtnText = _btnTextPause;
-                    mainBtnIcon = _btnIconStart;
                   })
                 }
               else
@@ -155,7 +207,6 @@ class _PomoHomeState extends State<PomoHome> {
                       setState(() {
                         remainingTime = longBreakTime;
                         mainBtnText = _btnTextStartLongBreak;
-                        mainBtnIcon = _btnIconStartLongBreak;
                       }),
                     }
                   else
@@ -164,26 +215,9 @@ class _PomoHomeState extends State<PomoHome> {
                       setState(() {
                         remainingTime = shortBreakTime;
                         mainBtnText = _btnTextStartShortBreak;
-                        mainBtnIcon = _btnIconStartShortBreak;
                       }),
                     }
                 }
             });
   }
-
-  _cancelTimer() {
-    _timer.cancel();
-  }
-}
-
-String _secondToFormattedString(int seconds) {
-  int roundedMinutes = seconds ~/ 60;
-  int remainingSeconds = seconds - (roundedMinutes * 60);
-  String remainingSecondsFormatted;
-  if (remainingSeconds < 10) {
-    remainingSecondsFormatted = "0$remainingSeconds";
-  } else {
-    remainingSecondsFormatted = remainingSeconds.toString();
-  }
-  return '$roundedMinutes:$remainingSecondsFormatted';
 }

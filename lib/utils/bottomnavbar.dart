@@ -40,26 +40,29 @@ class _BottomNavBarSettingsButtonState
                           ToggleSwitch(
                             onToggle: (index) {
                               log("$index'e basıldı.");
-                              setState(() {
-                                switch (index) {
-                                  case 0:
+
+                              switch (index) {
+                                case 0:
+                                  setState(() {
                                     BottomNavBarSettingsButton.themeMode =
                                         ThemeMode.system;
-
-                                    break;
-                                  case 1:
+                                  });
+                                  break;
+                                case 1:
+                                  setState(() {
                                     BottomNavBarSettingsButton.themeMode =
                                         ThemeMode.dark;
-
-                                    break;
-                                  case 2:
+                                  });
+                                  break;
+                                case 2:
+                                  setState(() {
                                     BottomNavBarSettingsButton.themeMode =
                                         ThemeMode.light;
+                                  });
+                                  break;
 
-                                    break;
-                                  default:
-                                }
-                              });
+                                default:
+                              }
                             },
                             animate: true,
                             totalSwitches: 3,
