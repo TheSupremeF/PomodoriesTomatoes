@@ -10,3 +10,5 @@ enum PomoStatus {
   shortbreakRunning,
   shortbreakPaused,
 }
+
+enum Po { roboto, adamina, montserrat }

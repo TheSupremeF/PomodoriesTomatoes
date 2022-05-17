@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pomodororeyistasakli/utils/clockwatch.dart';
 import 'package:pomodororeyistasakli/utils/darkmode.dart';
@@ -7,6 +8,8 @@ import '../themes/themes.dart';
 
 void main() {
   runApp(const MyApp());
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 }
 
 class MyApp extends StatelessWidget {
@@ -23,7 +26,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: BlocBuilder<ThemeModeCubit, ThemeMode?>(
-        builder: (context, state) {
+        builder: (context, themeState) {
           return MaterialApp(
             title: 'Pomodoro baba',
             debugShowCheckedModeBanner: false,
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
               primarySwatch: PomoAppThemes.allTime,
             ),
             home: const PomoHome(),
-            themeMode: state,
+            themeMode: themeState,
             darkTheme: ThemeData.dark(),
           );
         },

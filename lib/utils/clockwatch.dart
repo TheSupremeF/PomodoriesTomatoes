@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pomodororeyistasakli/model/status.dart';
+import 'package:pomodororeyistasakli/utils/constants.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 class ClockwatchCubit extends Cubit<String?> {
@@ -53,9 +55,9 @@ class ClockwatchToggle extends StatelessWidget {
       changeOnTap: true,
       totalSwitches: 3,
       customTextStyles: [
-        TextStyle(fontSize: 12, fontFamily: GoogleFonts.roboto().fontFamily),
-        TextStyle(fontSize: 9, fontFamily: GoogleFonts.adamina().fontFamily),
-        TextStyle(fontSize: 9, fontFamily: GoogleFonts.montserrat().fontFamily),
+        TextStyle(fontSize: 12, fontFamily: fonts[Po.roboto]),
+        TextStyle(fontSize: 9, fontFamily: fonts[Po.adamina]),
+        TextStyle(fontSize: 9, fontFamily: fonts[Po.montserrat]),
       ],
       labels: const ['Roboto', 'Adamina', 'Montserrat'],
       onToggle: (index) {

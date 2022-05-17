@@ -1,3 +1,5 @@
+import 'package:google_fonts/google_fonts.dart';
+
 import '../model/status.dart';
 import 'package:flutter/material.dart';
 
@@ -48,4 +50,10 @@ const Map<PomoStatus, List<Color>> statusGradient = {
     Colors.green
   ],
   PomoStatus.shortbreakPaused: [Colors.deepOrange, Colors.orange]
+};
+
+Map<Po, String?> fonts = {
+  Po.roboto: GoogleFonts.roboto().fontFamily,
+  Po.adamina: GoogleFonts.adamina().fontFamily,
+  Po.montserrat: GoogleFonts.montserrat().fontFamily,
 };

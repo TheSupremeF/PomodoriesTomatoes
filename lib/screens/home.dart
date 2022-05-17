@@ -49,13 +49,14 @@ class _PomoHomeState extends State<PomoHome> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ClockwatchCubit, String?>(
-      builder: (context, state) {
+      builder: (context, fontStyleState) {
         return Scaffold(
           appBar: AppBar(
+            backgroundColor: Colors.orange,
             actions: const [SettingsMenuDropdown()],
             title: Text(
               title,
-              style: TextStyle(fontFamily: state),
+              style: TextStyle(color: Colors.white, fontFamily: fontStyleState),
             ),
           ),
           body: SafeArea(
@@ -65,12 +66,12 @@ class _PomoHomeState extends State<PomoHome> {
                   _emptyBox(10),
                   Text(
                     'Pomonum: $pomoNum',
-                    style: TextStyle(fontFamily: state, fontSize: 32),
+                    style: TextStyle(fontFamily: fontStyleState, fontSize: 32),
                   ),
                   _emptyBox(10),
                   Text(
-                    'Set: ',
-                    style: TextStyle(fontFamily: state, fontSize: 22),
+                    'Set: $setNum',
+                    style: TextStyle(fontFamily: fontStyleState, fontSize: 22),
                   ),
                   Expanded(
                     child: Column(
@@ -92,7 +93,7 @@ class _PomoHomeState extends State<PomoHome> {
                             height: 100,
                             child: Textus(
                                 reis: _secondToFormattedString(remainingTime),
-                                fontFamily: state),
+                                fontFamily: fontStyleState),
                           ),
                         ),
                         _emptyBox(10),
@@ -144,7 +145,7 @@ class _PomoHomeState extends State<PomoHome> {
     );
   }
 
-  SizedBox _emptyBox(double? boxsize) => SizedBox(height: boxsize);
+  SizedBox _emptyBox(double? boxheight) => SizedBox(height: boxheight);
 
   _cancelTimer() {
     if (_timer != null) {

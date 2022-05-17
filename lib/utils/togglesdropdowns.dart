@@ -18,7 +18,10 @@ class _SettingsMenuDropdownState extends State<SettingsMenuDropdown> {
   Widget build(BuildContext context) {
     return PopupMenuButton<SettingsMenu>(
         offset: const Offset(50, -100),
-        icon: const Icon(Icons.settings, color: Colors.white),
+        icon: const Icon(
+          Icons.settings,
+          color: Colors.white,
+        ),
         shape: RoundedRectangleBorder(
             side: const BorderSide(width: 1.0, color: Colors.black),
             borderRadius: BorderRadius.circular(15)),
@@ -44,16 +47,22 @@ class _SettingsMenuDropdownState extends State<SettingsMenuDropdown> {
                   ),
                 ),
               ),
-              const PopupMenuItem(
+              PopupMenuItem(
                   value: SettingsMenu.clockStyle,
-                  child: Center(child: ClockwatchToggle())),
+                  child: Center(
+                      child: Column(
+                    children: const [
+                      Center(child: Text('Style Changer')),
+                      ClockwatchToggle(),
+                    ],
+                  ))),
               PopupMenuItem(
                   value: SettingsMenu.about,
                   child: Column(
                     children: [
-                      const Divider(
+                      Divider(
                         thickness: 1,
-                        color: Colors.black,
+                        color: Theme.of(context).focusColor,
                       ),
                       Row(children: [
                         Icon(Icons.logo_dev_outlined,
