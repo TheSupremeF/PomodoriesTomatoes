@@ -1,5 +1,5 @@
 # Pomodori es Tomatoes!
-Basic pomodoro app based on Roberto Fernandes' (YouTube video)[https://www.youtube.com/watch?v=pATGCf191to].
+Basic pomodoro app based on Roberto Fernandes' [YouTube video](https://www.youtube.com/watch?v=pATGCf191to).
 
 Properties:
 +System default / Dark mode / Light mode switch.
