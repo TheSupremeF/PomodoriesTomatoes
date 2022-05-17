@@ -21,4 +21,4 @@ Properties:
 
 [Roberto Fernandes](https://github.com/roberto-fernandes)
 
-and, [Fatih Yuce](https://www.instagram.com/fatihinseyirdefteri); for supporting and believing me for the things I'll accomplish.
+and, [Fatih Yuce](https://github.com/fatihyuce81); for supporting and believing me for the things I'll accomplish.
