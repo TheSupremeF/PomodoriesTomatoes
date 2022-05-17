@@ -11,7 +11,7 @@ Dark mode and Font Changer developed with Flutter BLoC.
  <img src="https://github.com/TheSupremeF/PomodoriesTomatoes/blob/master/assets/Lightmode.png" width="200" />
  <img src="https://github.com/TheSupremeF/PomodoriesTomatoes/blob/master/assets/Darkmode%20menu.png" width="200" /> </p>
 
-##Special thanks to:
+<h3 align="left">Special thanks to:</h3>
 
 [Burhan Cabiroğlu](https://github.com/burhancabiroglu)
 
