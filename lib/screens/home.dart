@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:pomodororeyistasakli/themes/themes.dart';
 import '../model/status.dart';
 import '../utils/bottomnavbar.dart';
 import '../utils/constants.dart';
@@ -53,16 +54,12 @@ class _PomoHomeState extends State<PomoHome> {
         child: Center(
           child: Column(
             children: [
-              const SizedBox(
-                height: 10,
-              ),
+              _emptyBox10(),
               Text(
                 'Pomonum: $pomoNum',
                 style: const TextStyle(fontSize: 32),
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              _emptyBox10(),
               Text(
                 'Set: $setNum',
                 style: const TextStyle(fontSize: 22),
@@ -73,17 +70,31 @@ class _PomoHomeState extends State<PomoHome> {
                   children: [
                     CircularPercentIndicator(
                       animation: false,
-                      lineWidth: 20,
+                      lineWidth: 25,
                       percent: _getPomoPercentage(),
-                      progressColor: statusColor[pomoStatus],
+                      linearGradient:
+                          LinearGradient(colors: statusGradient[pomoStatus]!),
+                      // progressColor: statusColor[pomoStatus],
                       radius: 120,
                       circularStrokeCap: CircularStrokeCap.round,
-                      center: Text(
-                        _secondToFormattedString(remainingTime),
-                        style: const TextStyle(fontSize: 35),
+                      center: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: 100,
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Columnus(fontFamily: fontFamilyA)
+                                  ]),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    _emptyBox10(),
                     ProgIco(
                         total: pomodorosPerSet,
                         done: pomoNum - (setNum * pomodorosPerSet))
@@ -108,6 +119,8 @@ class _PomoHomeState extends State<PomoHome> {
       bottomNavigationBar: BottomNavBar.nav,
     );
   }
+
+  SizedBox _emptyBox10() => const SizedBox(height: 10);
 
   _cancelTimer() {
     if (_timer != null) {

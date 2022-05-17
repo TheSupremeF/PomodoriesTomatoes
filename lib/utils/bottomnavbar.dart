@@ -1,18 +1,18 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:toggle_switch/toggle_switch.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:pomodororeyistasakli/utils/darkmode.dart';
 
-enum SettingsMenu { darkMode, about }
+enum SettingsMenu { darkMode, clockStyle, about }
 
 class BottomNavBarSettingsButton extends StatefulWidget {
-  static ThemeMode themeMode = ThemeMode.system;
   const BottomNavBarSettingsButton({Key? key}) : super(key: key);
 
   @override
   State<BottomNavBarSettingsButton> createState() =>
       _BottomNavBarSettingsButtonState();
 }
+
+String? fontFamilyA;
 
 class _BottomNavBarSettingsButtonState
     extends State<BottomNavBarSettingsButton> {
@@ -35,48 +35,10 @@ class _BottomNavBarSettingsButtonState
                         width: 12,
                       ),
                       Column(
-                        children: [
-                          const Center(child: Text('Dark mode')),
-                          ToggleSwitch(
-                            onToggle: (index) {
-                              log("$index'e basıldı.");
-
-                              switch (index) {
-                                case 0:
-                                  setState(() {
-                                    BottomNavBarSettingsButton.themeMode =
-                                        ThemeMode.system;
-                                  });
-                                  break;
-                                case 1:
-                                  setState(() {
-                                    BottomNavBarSettingsButton.themeMode =
-                                        ThemeMode.dark;
-                                  });
-                                  break;
-                                case 2:
-                                  setState(() {
-                                    BottomNavBarSettingsButton.themeMode =
-                                        ThemeMode.light;
-                                  });
-                                  break;
-
-                                default:
-                              }
-                            },
-                            animate: true,
-                            totalSwitches: 3,
-                            activeBgColor: const [
-                              Colors.green,
-                              Colors.black,
-                              Color.fromARGB(255, 0, 0, 105)
-                            ],
-                            activeFgColor: Colors.white,
-                            icons: const [
-                              Icons.android,
-                              Icons.dark_mode,
-                              Icons.sunny
-                            ],
+                        children: const [
+                          Center(child: Text('Dark mode')),
+                          Center(
+                            child: DarkModeToggle(),
                           ),
                         ],
                       ),
@@ -84,6 +46,37 @@ class _BottomNavBarSettingsButtonState
                   ),
                 ),
               ),
+              PopupMenuItem(
+                  value: SettingsMenu.clockStyle,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            fontFamilyA = GoogleFonts.roboto().fontFamily;
+                          });
+                        },
+                        child: Text(
+                          "Roboto",
+                          style: TextStyle(
+                              fontFamily: GoogleFonts.roboto().fontFamily),
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            fontFamilyA = GoogleFonts.adamina().fontFamily;
+                          });
+                        },
+                        child: Text(
+                          "Adamina",
+                          style: TextStyle(
+                              fontFamily: GoogleFonts.adamina().fontFamily),
+                        ),
+                      ),
+                    ],
+                  )),
               PopupMenuItem(
                   value: SettingsMenu.about,
                   child: Column(
@@ -101,7 +94,7 @@ class _BottomNavBarSettingsButtonState
                         ),
                       ]),
                     ],
-                  ))
+                  )),
             ]);
   }
 }

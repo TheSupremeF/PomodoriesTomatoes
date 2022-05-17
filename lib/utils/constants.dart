@@ -25,3 +25,27 @@ const Map<PomoStatus, MaterialColor> statusColor = {
   PomoStatus.shortbreakRunning: Colors.red,
   PomoStatus.shortbreakPaused: Colors.orange
 };
+
+const Map<PomoStatus, List<Color>> statusGradient = {
+  PomoStatus.running: [
+    Colors.orange,
+    Color.fromARGB(255, 251, 255, 0),
+    Color.fromARGB(255, 0, 255, 17),
+  ],
+  PomoStatus.paused: [Colors.deepOrange, Colors.orange],
+  PomoStatus.finished: [Color.fromARGB(255, 33, 149, 243)],
+  PomoStatus.longbreakRunning: [
+    Colors.red,
+    Colors.orange,
+    Colors.yellow,
+    Colors.green
+  ],
+  PomoStatus.longbreakPaused: [Colors.deepOrange, Colors.orange],
+  PomoStatus.shortbreakRunning: [
+    Colors.red,
+    Colors.orange,
+    Colors.yellow,
+    Colors.green
+  ],
+  PomoStatus.shortbreakPaused: [Colors.deepOrange, Colors.orange]
+};
