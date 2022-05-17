@@ -7,7 +7,7 @@ Properties:
 
 +Fonts Changer
 
-Dark mode and Font Changer developed with Flutter BLoC.
+<b>Dark mode and Font Changer</b> developed with <i><b>Flutter BLoC.</b></i>
 
 <p float="left">
  <img src="https://github.com/TheSupremeF/PomodoriesTomatoes/blob/master/assets/Lightmode.png" width="200" />
