@@ -7,8 +7,7 @@ Properties:
 
 Dark mode and Font Changer developed with Flutter BLoC.
 
-<p align="left"> <img src="https://github.com/TheSupremeF/PomodoriesTomatoes/blob/master/assets/Lightmode.png" /></p>
-<p align="left"> <img src="https://github.com/TheSupremeF/PomodoriesTomatoes/blob/master/assets/Darkmode%20menu.png" /> </p>
+<p align="left"> <img src="https://github.com/TheSupremeF/PomodoriesTomatoes/blob/master/assets/Lightmode.png" /></p> <p align="left"> <img src="https://github.com/TheSupremeF/PomodoriesTomatoes/blob/master/assets/Darkmode%20menu.png" /> </p>
 
 ##Special thanks to:
 [Burhan Cabiroğlu](https://github.com/burhancabiroglu)
