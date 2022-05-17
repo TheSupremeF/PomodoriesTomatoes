@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pomodororeyistasakli/utils/constants.dart';
 
 class PomoAppThemes {
   static MaterialColor allTime = Colors.orange;
@@ -19,30 +18,17 @@ String _secondToFormattedString(int seconds) {
   return '$roundedMinutes:$remainingSecondsFormatted';
 }
 
-class Columnus extends StatelessWidget {
-  const Columnus({Key? key, required this.fontFamily}) : super(key: key);
-
+class Textus extends StatelessWidget {
+  const Textus({Key? key, required this.fontFamily, required this.reis})
+      : super(key: key);
+  final String reis;
   final String? fontFamily;
-
-  static int get defTime => pomodoroTotalTime;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Icon(
-          Icons.arrow_drop_up,
-          size: 50,
-        ),
-        Text(
-          _secondToFormattedString(defTime),
-          style: TextStyle(fontSize: 35, fontFamily: fontFamily),
-        ),
-        const Icon(
-          Icons.arrow_drop_down,
-          size: 50,
-        ),
-      ],
+    return Text(
+      reis,
+      style: TextStyle(fontSize: 35, fontFamily: fontFamily),
     );
   }
 }

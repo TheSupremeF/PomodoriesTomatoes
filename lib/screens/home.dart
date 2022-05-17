@@ -1,10 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:pomodororeyistasakli/themes/themes.dart';
+import 'package:pomodororeyistasakli/utils/clockwatch.dart';
 import '../model/status.dart';
-import '../utils/bottomnavbar.dart';
+import '../utils/togglesdropdowns.dart';
 import '../utils/constants.dart';
 import '../widgets/progico.dart';
 
@@ -46,81 +48,103 @@ class _PomoHomeState extends State<PomoHome> {
   int setNum = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            children: [
-              _emptyBox10(),
-              Text(
-                'Pomonum: $pomoNum',
-                style: const TextStyle(fontSize: 32),
-              ),
-              _emptyBox10(),
-              Text(
-                'Set: $setNum',
-                style: const TextStyle(fontSize: 22),
-              ),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CircularPercentIndicator(
-                      animation: false,
-                      lineWidth: 25,
-                      percent: _getPomoPercentage(),
-                      linearGradient:
-                          LinearGradient(colors: statusGradient[pomoStatus]!),
-                      // progressColor: statusColor[pomoStatus],
-                      radius: 120,
-                      circularStrokeCap: CircularStrokeCap.round,
-                      center: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: 100,
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.vertical,
-                              child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Columnus(fontFamily: fontFamilyA)
-                                  ]),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    _emptyBox10(),
-                    ProgIco(
-                        total: pomodorosPerSet,
-                        done: pomoNum - (setNum * pomodorosPerSet))
-                  ],
-                ),
-              ),
-            ],
+    return BlocBuilder<ClockwatchCubit, String?>(
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            actions: const [SettingsMenuDropdown()],
+            title: Text(
+              title,
+              style: TextStyle(fontFamily: state),
+            ),
           ),
-        ),
-      ),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.miniCenterDocked,
-      floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.deepOrange,
-          tooltip: mainBtnText,
-          onPressed: () {
-            _mainButtonPressed();
-          },
-          child: mainBtnIcon,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-      bottomNavigationBar: BottomNavBar.nav,
+          body: SafeArea(
+            child: Center(
+              child: Column(
+                children: [
+                  _emptyBox(10),
+                  Text(
+                    'Pomonum: $pomoNum',
+                    style: TextStyle(fontFamily: state, fontSize: 32),
+                  ),
+                  _emptyBox(10),
+                  Text(
+                    'Set: ',
+                    style: TextStyle(fontFamily: state, fontSize: 22),
+                  ),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircularPercentIndicator(
+                          animation: false,
+                          lineWidth: 25,
+                          percent: _getPomoPercentage(),
+                          linearGradient: LinearGradient(
+                              colors: statusGradient[pomoStatus]!),
+                          // progressColor: statusColor[pomoStatus],
+                          radius: 120,
+                          circularStrokeCap: CircularStrokeCap.round,
+                          center: Container(
+                            alignment: Alignment.center,
+                            decoration:
+                                const BoxDecoration(shape: BoxShape.circle),
+                            height: 100,
+                            child: Textus(
+                                reis: _secondToFormattedString(remainingTime),
+                                fontFamily: state),
+                          ),
+                        ),
+                        _emptyBox(10),
+                        ProgIco(
+                            total: pomodorosPerSet,
+                            done: pomoNum - (setNum * pomodorosPerSet))
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.miniCenterDocked,
+          floatingActionButton: floatingActionMenu(),
+        );
+      },
     );
   }
 
-  SizedBox _emptyBox10() => const SizedBox(height: 10);
+  Column floatingActionMenu() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        FloatingActionButton(
+            backgroundColor: Colors.orange,
+            tooltip: mainBtnText,
+            onPressed: () {
+              _mainButtonPressed();
+            },
+            child: mainBtnIcon,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20))),
+        const Padding(padding: EdgeInsets.only(top: 5, bottom: 5)),
+        FloatingActionButton(
+            backgroundColor: Colors.orange,
+            tooltip: "Reset",
+            onPressed: () {},
+            child: const Icon(
+              Icons.restore,
+              size: 30,
+              color: Colors.white,
+            ),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20))),
+        const Padding(padding: EdgeInsets.only(top: 5, bottom: 5)),
+      ],
+    );
+  }
+
+  SizedBox _emptyBox(double? boxsize) => SizedBox(height: boxsize);
 
   _cancelTimer() {
     if (_timer != null) {
