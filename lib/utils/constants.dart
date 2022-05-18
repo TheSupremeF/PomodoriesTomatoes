@@ -10,7 +10,7 @@ const pomodorosPerSet = 4;
 
 const Map<PomoStatus, String> statusDescription = {
   PomoStatus.running: "Pomodoro is running brah, don't let this make you gone!",
-  PomoStatus.paused: 'Pomo paused, come back over ulan!',
+  PomoStatus.paused: 'Pomo has paused, come back over ulan!',
   PomoStatus.finished: 'It just finished sweetheart! Congrats to you!',
   PomoStatus.longbreakRunning: 'Good to see that you came this long!',
   PomoStatus.longbreakPaused: 'Okay! Go on!',

@@ -101,6 +101,11 @@ class _PomoHomeState extends State<PomoHome> {
                               fontFamily: fontStyleState),
                         ),
                         _emptyBox(10),
+                        Text(
+                          statusDescription[pomoStatus]!,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        _emptyBox(10),
                         ProgIco(
                             total: pomodorosPerSet,
                             done: pomoNum - (setNum * pomodorosPerSet))
