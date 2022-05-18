@@ -1,19 +1,18 @@
+// My imports
+import 'package:pomodories_tomatoes/widgets/cirperind.dart';
+import 'package:pomodories_tomatoes/themes/themes.dart';
+import 'package:pomodories_tomatoes/utils/clockwatch.dart';
+import 'package:pomodories_tomatoes/model/status.dart';
+import 'package:pomodories_tomatoes/utils/togglesdropdowns.dart';
+import 'package:pomodories_tomatoes/utils/constants.dart';
+import 'package:pomodories_tomatoes/widgets/progico.dart';
+//Other packages
 import 'dart:async';
 import 'dart:developer';
-
-import 'package:PomodoriesTomatoes/widgets/cirperind.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../themes/themes.dart';
-import '../utils/clockwatch.dart';
-import '../model/status.dart';
-import '../utils/togglesdropdowns.dart';
-import '../utils/constants.dart';
-import '../widgets/progico.dart';
-
-// import '../widgets/cirperind.dart';
 
 class PomoHome extends StatefulWidget {
   const PomoHome({Key? key}) : super(key: key);
@@ -28,7 +27,6 @@ const _btnTextStartShortBreak = 'Take Short Break';
 const _btnTextStartLongBreak = 'Take Long Break';
 const _btnTextStartNewSet = 'Start New Set';
 const _btnTextPause = 'Pause';
-const _btnTextReset = 'Reset';
 const _btnTextResumeBreak = 'Resume Break';
 
 const _btnIconStart = Icon(Icons.play_arrow, color: Colors.white);
@@ -138,7 +136,7 @@ class _PomoHomeState extends State<PomoHome> {
             child: mainBtnIcon,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20))),
-        const Padding(padding: EdgeInsets.only(top: 5, bottom: 5)),
+        _emptyBox(10),
         FloatingActionButton(
             backgroundColor: PomoAppThemes.allTime,
             tooltip: "Reset",
@@ -153,7 +151,7 @@ class _PomoHomeState extends State<PomoHome> {
             ),
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20))),
-        const Padding(padding: EdgeInsets.only(top: 5, bottom: 5)),
+        _emptyBox(10),
       ],
     );
   }
