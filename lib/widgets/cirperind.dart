@@ -5,15 +5,15 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import '../model/status.dart';
 
 class CirPerInd extends StatelessWidget {
-  CirPerInd(
+  const CirPerInd(
       {Key? key,
       required this.percentCalc,
       required this.textWidget,
       required this.status})
       : super(key: key);
-  Widget? textWidget;
-  double percentCalc;
-  PomoStatus status;
+  final Widget? textWidget;
+  final double percentCalc;
+  final PomoStatus status;
   @override
   Widget build(BuildContext context) {
     return CircularPercentIndicator(
