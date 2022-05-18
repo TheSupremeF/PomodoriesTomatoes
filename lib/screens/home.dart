@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:PomodoriesTomatoes/widgets/cirperind.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:percent_indicator/percent_indicator.dart';
 import '../themes/themes.dart';
 import '../utils/clockwatch.dart';
 import '../model/status.dart';
@@ -40,6 +41,7 @@ const _btnIconPause = Icon(Icons.pause, color: Colors.white);
 PomoStatus pomoStatus = PomoStatus.paused;
 
 class _PomoHomeState extends State<PomoHome> {
+  static AudioCache player = AudioCache();
   int countdeLahodras = 0;
   int remainingTime = pomodoroTotalTime;
   String mainBtnText = _btnTextStart;
@@ -52,6 +54,12 @@ class _PomoHomeState extends State<PomoHome> {
   void dispose() {
     _cancelTimer();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    player.load('bell.mp3');
   }
 
   @override
@@ -85,24 +93,12 @@ class _PomoHomeState extends State<PomoHome> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CircularPercentIndicator(
-                          animation: false,
-                          lineWidth: 25,
-                          percent: _getPomoPercentage(),
-                          linearGradient: LinearGradient(
-                              colors: statusGradient[pomoStatus]!),
-                          // progressColor: statusColor[pomoStatus],
-                          radius: 120,
-                          circularStrokeCap: CircularStrokeCap.round,
-                          center: Container(
-                            alignment: Alignment.center,
-                            decoration:
-                                const BoxDecoration(shape: BoxShape.circle),
-                            height: 100,
-                            child: Textus(
-                                text: _secondToFormattedString(remainingTime),
-                                fontFamily: fontStyleState),
-                          ),
+                        CirPerInd(
+                          status: pomoStatus,
+                          percentCalc: _getPomoPercentage(),
+                          textWidget: Textus(
+                              text: _secondToFormattedString(remainingTime),
+                              fontFamily: fontStyleState),
                         ),
                         _emptyBox(10),
                         ProgIco(
@@ -217,7 +213,7 @@ class _PomoHomeState extends State<PomoHome> {
           ),
           actions: [
             TextButton(
-              child: const Text('Uh, okay...'),
+              child: const Text('Uh, okay... '),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -450,5 +446,6 @@ class _PomoHomeState extends State<PomoHome> {
 
   _playSound() {
     log("Sound playing");
+    player.play('bell.mp3');
   }
 }

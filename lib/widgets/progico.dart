@@ -12,9 +12,9 @@ class ProgIco extends StatelessWidget {
   Widget build(BuildContext context) {
     const iconSize = 50.0;
 
-    final doneIcon = Icon(Icons.check_circle_outlined,
+    const doneIcon = Icon(Icons.check_circle_outlined,
         color: PomoAppThemes.allTime, size: iconSize);
-    final undoneIcon = Icon(Icons.circle_outlined,
+    const undoneIcon = Icon(Icons.circle_outlined,
         color: PomoAppThemes.allTime, size: iconSize);
 
     List<Icon> iconsList = <Icon>[];

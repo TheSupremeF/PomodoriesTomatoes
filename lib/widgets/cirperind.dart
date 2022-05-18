@@ -1,12 +1,35 @@
+import 'package:PomodoriesTomatoes/utils/constants.dart';
+import 'package:flutter/material.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
-/* class Circular {
-  static CircularPercentIndicator indiKeytir = CircularPercentIndicator(
-    animation: true,
-    lineWidth: 25,
-    percent: 0.65,
-    progressColor: statusColor[pomoStatus],
-    radius: 120,
-    circularStrokeCap: CircularStrokeCap.round,
-    center: secondtoFormattedString,
-  );
-} */
+import '../model/status.dart';
+
+class CirPerInd extends StatelessWidget {
+  CirPerInd(
+      {Key? key,
+      required this.percentCalc,
+      required this.textWidget,
+      required this.status})
+      : super(key: key);
+  Widget? textWidget;
+  double percentCalc;
+  PomoStatus status;
+  @override
+  Widget build(BuildContext context) {
+    return CircularPercentIndicator(
+      animation: false,
+      lineWidth: 25,
+      percent: percentCalc,
+      linearGradient: LinearGradient(colors: statusGradient[status]!),
+      // progressColor: statusColor[pomoStatus],
+      radius: 120,
+      circularStrokeCap: CircularStrokeCap.round,
+      center: Container(
+        alignment: Alignment.center,
+        decoration: const BoxDecoration(shape: BoxShape.circle),
+        height: 100,
+        child: textWidget,
+      ),
+    );
+  }
+}

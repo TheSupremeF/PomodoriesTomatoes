@@ -39,6 +39,7 @@ dependencies:
   toggle_switch: ^2.0.1
   flutter_bloc: ^8.0.1
   flutter_launcher_icons: ^0.9.2
+  audioplayers: ^0.20.1
 
 flutter_icons:
   image_path_android: "assets/app_icon.png"
@@ -77,6 +78,7 @@ flutter:
   assets:
     - assets/app_icon.png
     - assets/countdelahodras.png
+    - assets/bell.mp3
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
