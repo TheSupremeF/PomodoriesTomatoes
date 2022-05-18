@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:pomodororeyistasakli/utils/clockwatch.dart';
-import 'package:pomodororeyistasakli/utils/darkmode.dart';
+import '../utils/clockwatch.dart';
+import '../utils/darkmode.dart';
 
 enum SettingsMenu { darkMode, clockStyle, about }
 
@@ -76,50 +74,5 @@ class _SettingsMenuDropdownState extends State<SettingsMenuDropdown> {
                     ],
                   )),
             ]);
-  }
-}
-
-class ClockwatchChangerButtons extends StatelessWidget {
-  const ClockwatchChangerButtons({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        ClockwatchStyleChanger(
-          fontName: "Roboto",
-          fontFamily: GoogleFonts.roboto().fontFamily,
-          callBackFunc: () {
-            context.read<ClockwatchCubit>().roboto();
-          },
-        ),
-        ClockwatchStyleChanger(
-          fontName: "Adamina",
-          fontFamily: GoogleFonts.adamina().fontFamily,
-          callBackFunc: () {
-            context.read<ClockwatchCubit>().adamina();
-          },
-        ),
-        ClockwatchStyleChanger(
-          fontName: "Montserrat",
-          fontFamily: GoogleFonts.montserrat().fontFamily,
-          callBackFunc: () {
-            context.read<ClockwatchCubit>().montserrat();
-          },
-        ),
-      ],
-    );
-  }
-}
-
-class FloatingActionMenu extends StatelessWidget {
-  const FloatingActionMenu({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }

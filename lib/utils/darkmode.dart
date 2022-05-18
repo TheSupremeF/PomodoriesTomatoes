@@ -29,7 +29,7 @@ class DarkModeToggle extends StatelessWidget {
       totalSwitches: 3,
       activeBgColors: const [
         [Colors.green],
-        [Colors.black],
+        [Colors.yellow],
         [Color.fromARGB(255, 0, 0, 105)]
       ],
       activeFgColor: Colors.white,
