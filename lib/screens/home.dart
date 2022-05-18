@@ -5,6 +5,7 @@ import 'package:PomodoriesTomatoes/widgets/cirperind.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../themes/themes.dart';
 import '../utils/clockwatch.dart';
 import '../model/status.dart';
@@ -198,27 +199,41 @@ class _PomoHomeState extends State<PomoHome> {
                         Color.fromARGB(255, 255, 136, 0)
                       ])),
                   child: Row(
-                    children: const [
-                      Text(' '),
-                      Text('I,', style: TextStyle(fontSize: 17)),
+                    children: [
+                      const Text(' '),
+                      Text('I,',
+                          style: TextStyle(
+                              fontFamily:
+                                  GoogleFonts.calligraffitti().fontFamily,
+                              fontSize: 17)),
                       Text(' Lahodras, ',
                           style: TextStyle(
-                              fontSize: 17, fontWeight: FontWeight.bold)),
+                              fontFamily:
+                                  GoogleFonts.calligraffitti().fontFamily,
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold)),
                       Text('shall prevail you!',
-                          style: TextStyle(fontSize: 17)),
+                          style: TextStyle(
+                              fontFamily:
+                                  GoogleFonts.calligraffitti().fontFamily,
+                              fontSize: 17)),
                     ],
                   ),
                 ),
                 _emptyBox(10),
                 ClipRRect(
                     borderRadius: BorderRadius.circular(30),
-                    child: Image.asset('assets/countdelahodras.png'))
+                    child: Image.asset('assets/countdelahodras.png')),
+                Text('See you later my first project...',
+                    style: TextStyle(
+                        fontFamily: GoogleFonts.calligraffitti().fontFamily,
+                        fontSize: 17)),
               ],
             ),
           ),
           actions: [
             TextButton(
-              child: const Text('Uh, okay... '),
+              child: const Text('Uh, okay...'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
